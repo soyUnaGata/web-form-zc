@@ -43,13 +43,13 @@
             </div>
         </form>
 
-        <p v-if="message" class="mt-2 text-success">{{ message }}</p>
-        <p v-if="errorMessage" class="mt-2 text-danger">{{ errorMessage }}</p>
+        <notification ref="alert"></notification>
     </div>
 </template>
 
 <script setup>
-import {computed, ref} from "vue";
+   import notification from "@/components/notification.vue";
+   import {computed, ref} from "vue";
    import axios from "axios";
 
    const dealName = ref("");
@@ -57,8 +57,8 @@ import {computed, ref} from "vue";
    const accName = ref("");
    const accSite = ref("");
    const accPhone = ref("");
-   const message = ref ("");
-   const errorMessage = ref ("");
+
+   const alert = ref(null);
 
    const validWebsite = computed(() => {
        const regex = /^(http:\/\/www.|https:\/\/www.|ftp:\/\/www.|www.|http:\/\/|https:\/\/|ftp:\/\/|){1}[^\x00-\x19\x22-\x27\x2A-\x2C\x2E-\x2F\x3A-\x3F\x5B-\x5E\x60\x7B\x7D-\x7F]+(\.[^\x00-\x19\x22\x24-\x2C\x2E-\x2F\x3C\x3E\x40\x5B-\x5E\x60\x7B\x7D-\x7F]+)+([\/\?].*)*$/;
@@ -75,14 +75,11 @@ import {computed, ref} from "vue";
            .then(res => {
                dealName.value = '';
                dealStage.value = '';
-                   accName.value = '';
-                   accSite.value = '';
-                   accPhone.value = '';
-               message.value = res.data;
-
+               accName.value = '';
+               accSite.value = '';
+               accPhone.value = '';
+               alert.value.log(res.data);
            })
-           .catch((error) =>
-               errorMessage.value = error)
+           .catch((error) => alert.value.error(error))
    }
-
 </script>

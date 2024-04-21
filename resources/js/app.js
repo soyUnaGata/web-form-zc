@@ -19,7 +19,7 @@ import App from "./App.vue";
 const app = createApp({App});
 
 
-import index from './components/index.vue';
+import index from './views/index.vue';
 app.component('index', index);
 
 /**
