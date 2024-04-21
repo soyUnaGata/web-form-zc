@@ -27,14 +27,14 @@ class DealController extends Controller
         $isDealCreated =  $this->zohoCrmApi->UpsertDeal($deal);
 
         if (!$isDealCreated){
-            return 'Something went wrong';
+            return response('Deal creation failed', 500);
         }
 
         $account = new Account($data['accName'], $data['accSite'], $data['accPhone']);
         $isAccountCreated = $this->zohoCrmApi->UpsertAccount($account);
 
         if (!$isAccountCreated){
-            return 'Something went wrong';
+            return response("Account creation failed", 500);
         }
 
         return 'Deal and Account have been created successfully.';

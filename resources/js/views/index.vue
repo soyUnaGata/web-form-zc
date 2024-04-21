@@ -80,6 +80,6 @@
                accPhone.value = '';
                alert.value.log(res.data);
            })
-           .catch((error) => alert.value.error(error))
+           .catch((error) => alert.value.error(error.response.data))
    }
 </script>
