@@ -17,16 +17,6 @@ Route::prefix('api')->group(function() {
         $zohoCrmApi->AccessToken($code);
         return redirect('/');
     });
-
-    Route::get('/test', function (Request $request, ZohoCrmApi $zohoCrmApi) {
-        $resp = $zohoCrmApi->test();
-        return $resp;
-    });
-
-    Route::get('/test2', function (Request $request, ZohoCrmApi $zohoCrmApi) {
-        $resp = $zohoCrmApi->UpsertDeal(null);
-        return $resp;
-    });
 });
 
 

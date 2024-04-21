@@ -10,13 +10,15 @@ use function Webmozart\Assert\Tests\StaticAnalysis\string;
 
 class ZohoCrmApi
 {
-    private $clientId = "1000.FNBHXF2SNHBAG0BAV2MV65W3VS8VYO";
-    private $clientSecret = '26e3a621de9074b6a453bccc05881b8f64a168638e';
+    private $clientId;
+    private $clientSecret;
     private $redirect = "http://127.0.0.1:8000/api/oauthredirect";
     private $client;
 
     public function __construct(){
         $this->client = new Client();
+        $this->clientId = env('ZOHO_CLIENT_ID', '');
+        $this->clientSecret = env('ZOHO_CLIENT_SECRET', '');
     }
 
     public function Authorization() : string
@@ -147,11 +149,6 @@ class ZohoCrmApi
         }
 
         return $credentials;
-    }
-
-    public function test()
-    {
-        Cache::clear();
     }
 }
 
