@@ -25,9 +25,8 @@ class DealRequest extends FormRequest
             'name' => 'required|string',
              'stage' => 'required|string',
                'accName' => 'required|string',
-               'accEmail' => 'required|string|unique',
                'accSite'  => 'required|string',
-               'accPhone' => 'required|string|unique'
+               'accPhone' => 'required|string|regex:/^([0-9\s\-\+\(\)]*)$/',
         ];
     }
 }

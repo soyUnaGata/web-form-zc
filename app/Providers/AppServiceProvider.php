@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Services\Transistor;
+use App\Services\ZohoCrmApi;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,7 +14,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(ZohoCrmApi::class, function ($app) {
+            return new ZohoCrmApi();
+        });
     }
 
     /**
@@ -19,6 +24,5 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
     }
 }
